@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Person Data</title>
+    <link rel="stylesheet" href="/person.css">
+</head>
+
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/person/create">Create New</a>
+    </nav>
+    <div class="container">
+        <h1>Person Data</h1>
+        <div class="data-container">
+            <% data.forEach(person=> { %>
+                <div class="card">
+                    <h2>
+                        <%= person.name || "None" %>
+                    </h2>
+                    <p>Age: <%= person.age || "None" %>
+                    </p>
+                    <p>Work: <%= person.work || "None" %>
+                    </p>
+                    <p>Mobile No.: <%= person.mobile || "None" %>
+                    </p>
+                    <p>EmailId: <%= person.email || "None" %>
+                    </p>
+                    <p>Address: <%= person.address || "None" %>
+                    </p>
+                    <p>Salary: <%= person.salary || "None" %>
+                    </p>
+                </div>
+                <% }) %>
+        </div>
+    </div>
+</body>
+
+</html>

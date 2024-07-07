@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text color */
+}
+::-webkit-scrollbar{
+    width: 0px;
+}
+
+nav {
+    background-color: #333333; /* Darker background for nav */
+    color: #e0e0e0; /* Light text color */
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: #e0e0e0; /* Light text color */
+    text-decoration: none;
+    margin: 0 15px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #e0e0e0; /* Light text color */
+}
+
+.data-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    background-color: #1e1e1e; /* Slightly lighter dark background for cards */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 200px;
+    text-align: left;
+}
+
+.card h2 {
+    color: #e0e0e0; /* Light text color */
+    margin-top: 0;
+}
+
+.card p {
+    color: #b0b0b0; /* Slightly lighter text color for details */
+    margin: 8px 0;
+}

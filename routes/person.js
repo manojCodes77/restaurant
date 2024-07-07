@@ -1,25 +1,57 @@
 let express = require('express');
 let router = express.Router();
 const Person = require('../models/person');
+const path=require('path');
 
-router.post('/', async (req, res) => {
+// router.set("view engine", "ejs");
+router.use(express.static(path.join(__dirname, 'public')));
+router.use(express.urlencoded({ extended: true }));
+router.use(express.json());
+
+router.get("/create", (req, res) => {
+    res.render('createPerson');
+});
+
+router.get("/personCreated", (req, res) => {
+    res.render('personCreated');
+});
+router.post('/add', async (req, res) => {
     try {
-        const data = req.body;
-        let newPerson = new Person(data);
+        let { name, age, work, mobile, email, address, salary } = req.body;
+
+        if (!name || !age || !work || !mobile || !email || !salary || !address) {
+            return res.status(400).json({ error: 'All fields are required' });
+        }
+
+        let newPerson = new Person({ name, age, work, mobile, email, address, salary });
         await newPerson.save();
-        console.log(data);
-        res.send("jai shree ram");
+        console.log(newPerson);
+        res.redirect('/person/personCreated');
+
     } catch (error) {
-        res.status(500).send(error);
+        if (error.code === 11000 && error.keyPattern && error.keyPattern.email) {
+            // Duplicate email error
+            return res.status(400).json({ error: 'Email already exists' });
+        }
+        console.error('Error adding new person:', error);
+        res.status(500).send('Error adding new person');
     }
 });
+
 router.get('/', async (req, res) => {
+    // try {
+    //     const data = await Person.find();
+    //     console.log("data is here");
+    //     res.send(data);
+    // } catch (error) {
+    //     res.status(500).send("you got an error");
+    // }
     try {
         const data = await Person.find();
+        res.render('person', { data });
         console.log("data is here");
-        res.send(data);
     } catch (error) {
-        res.status(500).send("you got an error");
+        res.status(500).send("You got an error");
     }
 });
 router.get("/:workType", async (req, res) => {
