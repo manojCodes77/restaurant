@@ -7,7 +7,12 @@ const mongoURL = process.env.MONGODB_URL;
 // const mongoURL = process.env.MONGODB_URL_LOCAL;
 
 // set up the connection
-mongoose.connect(mongoURL);
+mongoose.connect(mongoURL)
+.then(() => {
+    console.log('Connected to MongoDB');
+}).catch((error) => {
+    console.log('Error connecting to MongoDB');
+});
 
 // get the connection object
 const db = mongoose.connection;
