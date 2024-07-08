@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Items</title>
+    <link rel="stylesheet" href="/menu.css">
+</head>
+
+<body>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/menu/create">Create New</a>
+    </nav>
+    <div class="container">
+        <h1>Menu Items</h1>
+        <div class="data-container">
+            <% data.forEach(item => { %>
+                <div class="card">
+                    <h2><%= item.name || "None" %></h2>
+                    <p>Price: ₹<%= item.price.toFixed(2) || "None" %></p>
+                    <p>Taste: <%= item.taste || "None" %></p>
+                    <p>Drink: <%= item.is_drink ? "Yes" : "No" %></p>
+                    <p>Ingredients: <%= item.ingredients.join(", ") || "None" %></p>
+                    <p>Sales: <%= item.num_sales || "None" %></p>
+                    <div class="actions">
+                        <a href="/menu/edit/<%= item._id %>" class="btn">Edit</a>
+                        <form action="/menu/delete/<%= item._id %>" method="POST" class="inline-form" onsubmit="return confirm('Are you sure you want to delete this menuItem?');">
+                            <button type="submit" class="btn btn-delete">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+</body>
+
+</html>
+

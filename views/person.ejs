@@ -27,12 +27,19 @@
                     </p>
                     <p>Mobile No.: <%= person.mobile || "None" %>
                     </p>
-                    <p>EmailId: <%= person.email || "None" %>
+                    <p>Email Id: <%= person.email || "None" %>
                     </p>
                     <p>Address: <%= person.address || "None" %>
                     </p>
-                    <p>Salary: <%= person.salary || "None" %>
+                    <p>Salary: ₹<%= person.salary || "None" %>
                     </p>
+                    <div class="actions">
+                        <a href="/person/edit/<%= person._id %>">Edit</a>
+                        <form action="/person/delete/<%= person._id %>" method="post"
+                            onsubmit="return confirm('Are you sure you want to delete this person?');">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </div>
                 </div>
                 <% }) %>
         </div>

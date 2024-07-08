@@ -71,7 +71,23 @@ router.get("/:workType", async (req, res) => {
     }
 });
 
-router.put("/:id", async (req, res) => {
+router.get("/edit/:id", async (req, res) => {
+    try {
+        const id = req.params.id;
+        const person = await Person.findById(id);
+        // if id is invalid
+        if (!person) {
+            return res.status(404).send("invalid id");
+        }
+        console.log(person);
+        res.render('updatePerson', { person });
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).send("error occured");
+    }
+});
+
+router.post("/update/:id", async (req, res) => {
     try {
         const id = req.params.id;
         const data = req.body;
@@ -85,7 +101,8 @@ router.put("/:id", async (req, res) => {
             return res.status(404).send("invalid id");
         }
         console.log(person);
-        res.status(200).send(person);
+        // res.status(200).send(person);
+        res.redirect('/person/personCreated');
     } catch (error) {
         console.log(error.message);
         res.status(500).send("error occured");
@@ -103,6 +120,22 @@ router.delete("/:id", async (req, res) => {
         console.log(person);
         res.status(200).send(person);
     } catch (error) {
+        console.log(error.message);
+        res.status(500).send("error occured");
+    }
+});
+
+router.post("/delete/:id", async (req, res) => {
+    try{
+        const id = req.params.id;
+        const person = await Person.findByIdAndDelete(id);
+        // if id is invalid
+        if (!person) {
+            return res.status(404).send("invalid id");
+        }
+        console.log(person);
+        res.redirect('/person');
+    } catch(error) {
         console.log(error.message);
         res.status(500).send("error occured");
     }

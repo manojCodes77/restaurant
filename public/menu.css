@@ -1,19 +1,14 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #121212; /* Dark background */
-    color: #e0e0e0; /* Light text color */
-}
-::-webkit-scrollbar{
-    width: 0px;
+* {
+    box-sizing: border-box;
 }
 
 nav {
     background-color: #333333; /* Darker background for nav */
     color: #e0e0e0; /* Light text color */
-    padding: 10px;
+    padding: 2vh;
     text-align: center;
+    display: flex;
+    justify-content: space-between;
 }
 
 nav a {
@@ -26,8 +21,15 @@ nav a:hover {
     text-decoration: underline;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text color */
+}
+
 .container {
-    padding: 20px;
     text-align: center;
 }
 
@@ -62,29 +64,36 @@ h1 {
 }
 
 .actions {
+    margin-top: 20px;
     display: flex;
     justify-content: space-between;
-    margin-top: 10px;
 }
 
-.actions a, .actions button {
+.inline-form {
+    display: inline;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #e0e0e0;
     background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
     text-decoration: none;
-    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 10px;
 }
 
-.actions a:hover, .actions button:hover {
+.btn:hover {
     background-color: #03830a;
 }
 
-.actions button {
-    background-color: #f44336;
+.btn-delete {
+    background-color: #e74c3c;
+    border: none;
+    cursor: pointer;
+    color: #fff;
 }
 
-.actions button:hover {
-    background-color: #d32f2f;
+.btn-delete:hover {
+    background-color: #c0392b;
 }
